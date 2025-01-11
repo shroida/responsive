@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # responsive
 =======
+=======
+>>>>>>> 90194b8d80d4066108d94b22926419d87d349643
 # responsive
 
 A new Flutter project.
@@ -17,4 +20,7 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+<<<<<<< HEAD
 >>>>>>> 90194b8 (Initial commit)
+=======
+>>>>>>> 90194b8d80d4066108d94b22926419d87d349643
