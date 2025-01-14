@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:responsive/mobile%20Layout/mobile_layout.dart';
+import 'package:responsive/tablet%20layout/tablet_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,13 +34,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     log(height.toString());
-    return LayoutBuilder(builder: (context, constrains) {
-      log(constrains.maxWidth.toString());
-      if (constrains.maxWidth < 600) {
+    return LayoutBuilder(builder: (context, constraints) {
+      log('MaxWidth: ${constraints.maxWidth}');
+
+      if (constraints.maxWidth < 768) {
+        // Mobile layout
         return const MobileLayout();
-      } else if (constrains.maxWidth > 600 && constrains.maxWidth < 900) {
+      } else if (constraints.maxWidth >= 768 && constraints.maxWidth < 1024) {
+        // Tablet layout
         return const TabLayout();
       } else {
+        // Desktop layout
         return const DesktopLayout();
       }
     });
@@ -59,47 +64,6 @@ class ShowDetails extends StatelessWidget {
         width: 700,
         child: Text(numberDetails.toString()),
       ),
-    );
-  }
-}
-
-class TabLayout extends StatefulWidget {
-  const TabLayout({super.key});
-
-  @override
-  TabLayoutState createState() => TabLayoutState();
-}
-
-class TabLayoutState extends State<TabLayout> {
-  int number = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Expanded(
-          child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, item) {
-                return GestureDetector(
-                  onTap: () {
-                    number = item + 1;
-                    setState(() {});
-                  },
-                  child: Container(
-                    margin:
-                        const EdgeInsets.only(bottom: 15, right: 20, left: 20),
-                    color: const Color.fromARGB(255, 64, 106, 254),
-                    height: 50,
-                    width: 200,
-                    child: Text('${item + 1}'),
-                  ),
-                );
-              }),
-        ),
-        Expanded(child: Text(number.toString()))
-      ],
     );
   }
 }
