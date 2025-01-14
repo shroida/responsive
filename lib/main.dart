@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
   }
@@ -40,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
           } else if (constrains.maxWidth > 600 && constrains.maxWidth < 900) {
             return const TabLayout();
           } else {
-            return const Text('desktop');
+            return const DesktopLayout();
           }
         }));
   }
@@ -127,6 +128,72 @@ class TabLayoutState extends State<TabLayout> {
         ),
         Expanded(child: Text(number.toString()))
       ],
+    );
+  }
+}
+
+class DesktopLayout extends StatelessWidget {
+  const DesktopLayout({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(
+              color: const Color(0xFF124671),
+              height: screenHeight * .25,
+              width: screenWidth,
+            ),
+          ),
+          Row(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    margin:
+                        const EdgeInsets.only(top: 15, right: 15, bottom: 15),
+                    color: const Color.fromARGB(255, 134, 154, 36),
+                    height: screenHeight*.75,
+                    width: screenWidth*.25,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 15, bottom: 15),
+                    color: const Color.fromARGB(255, 134, 154, 36),
+                    height: screenHeight*.75,
+                    width: screenWidth*.25,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(
+                        top: 15,
+                      ),
+                      color: const Color.fromARGB(255, 158, 69, 28),
+                      height:screenHeight*0.37,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 15, bottom: 15),
+                      color: const Color.fromARGB(255, 158, 69, 28),
+                      height:screenHeight*0.37,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
