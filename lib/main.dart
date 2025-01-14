@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:responsive/mobile%20Layout/mobile_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,45 +33,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     log(height.toString());
-    return Scaffold(
-        appBar: AppBar(),
-        body: LayoutBuilder(builder: (context, constrains) {
-          log(constrains.maxWidth.toString());
-          if (constrains.maxWidth < 600) {
-            return const MobileLayout();
-          } else if (constrains.maxWidth > 600 && constrains.maxWidth < 900) {
-            return const TabLayout();
-          } else {
-            return const DesktopLayout();
-          }
-        }));
-  }
-}
-
-class MobileLayout extends StatelessWidget {
-  const MobileLayout({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, item) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ShowDetails(numberDetails: item + 1)));
-            },
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 15, right: 20, left: 20),
-              color: Colors.amber,
-              height: 50,
-              width: 200,
-              child: Text('${item + 1}'),
-            ),
-          );
-        });
+    return LayoutBuilder(builder: (context, constrains) {
+      log(constrains.maxWidth.toString());
+      if (constrains.maxWidth < 600) {
+        return const MobileLayout();
+      } else if (constrains.maxWidth > 600 && constrains.maxWidth < 900) {
+        return const TabLayout();
+      } else {
+        return const DesktopLayout();
+      }
+    });
   }
 }
 
@@ -150,47 +122,47 @@ class DesktopLayout extends StatelessWidget {
               width: screenWidth,
             ),
           ),
-          Row(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    margin:
-                        const EdgeInsets.only(top: 15, right: 15, bottom: 15),
-                    color: const Color.fromARGB(255, 134, 154, 36),
-                    height: screenHeight*.75,
-                    width: screenWidth*.25,
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(top: 15, bottom: 15),
-                    color: const Color.fromARGB(255, 134, 154, 36),
-                    height: screenHeight*.75,
-                    width: screenWidth*.25,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              Expanded(
-                child: Column(
+          IntrinsicHeight(
+            child: Row(
+              children: [
+                Row(
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(
-                        top: 15,
-                      ),
-                      color: const Color.fromARGB(255, 158, 69, 28),
-                      height:screenHeight*0.37,
+                      margin:
+                          const EdgeInsets.only(top: 15, right: 15, bottom: 15),
+                      color: const Color.fromARGB(255, 134, 154, 36),
+                      width: screenWidth * .25,
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 15, bottom: 15),
-                      color: const Color.fromARGB(255, 158, 69, 28),
-                      height:screenHeight*0.37,
+                      color: const Color.fromARGB(255, 134, 154, 36),
+                      width: screenWidth * .25,
                     ),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(
+                          top: 15,
+                        ),
+                        color: const Color.fromARGB(255, 158, 69, 28),
+                        height: screenHeight * 0.37,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 15, bottom: 15),
+                        color: const Color.fromARGB(255, 158, 69, 28),
+                        height: screenHeight * 0.37,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
