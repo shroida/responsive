@@ -3,9 +3,7 @@ import 'package:responsive/mobile%20Layout/custom_sliver_grid.dart';
 import 'package:responsive/mobile%20Layout/custom_sliver_list.dart';
 
 class MobileView extends StatelessWidget {
-  MobileView({super.key}) {
-    print('Mobile layout created');
-  }
+  const MobileView({super.key});
 
   @override
   Widget build(BuildContext context) {

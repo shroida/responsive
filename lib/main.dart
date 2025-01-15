@@ -1,11 +1,12 @@
 import 'dart:developer';
 
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive/mobile%20Layout/drawer.dart';
 import 'package:responsive/mobile%20Layout/home_view_body.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(DevicePreview(builder: (context) => const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -56,11 +57,10 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           : null,
       body: const Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16.0,
-        ),
-        child:DashboardView()
-      ),
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+          ),
+          child: DashboardView()),
     );
   }
 }

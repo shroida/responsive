@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:responsive/desktop%20layout/desktop_layout.dart';
 
@@ -13,9 +12,9 @@ class DashboardView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: AdaptiveLayout(
-        mobileLayout: MobileView(),
-        tabletLayout: TabView(),
-        desktopLayout: DesktopLayout(),
+        mobileLayout: (context) => const MobileView(),
+        tabletLayout: (context) => const TabView(),
+        desktopLayout: (context) => const DesktopLayout(),
       ),
     );
   }
@@ -28,20 +27,20 @@ class AdaptiveLayout extends StatelessWidget {
     required this.tabletLayout,
     required this.desktopLayout,
   });
-  final Widget mobileLayout;
-  final Widget tabletLayout;
-  final Widget desktopLayout;
+  final WidgetBuilder mobileLayout;
+  final WidgetBuilder tabletLayout;
+  final WidgetBuilder desktopLayout;
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxHeight < 768) {
+      if (constraints.maxWidth < 700) {
         // mobile
-        return MobileView();
-      } else if (constraints.maxWidth >= 768 && constraints.maxWidth < 1024) {
+        return const MobileView();
+      } else if (constraints.maxWidth >= 700 && constraints.maxWidth < 1024) {
         //tablet
-        return TabView();
+        return const TabView();
       } else {
-        return DesktopLayout();
+        return const DesktopLayout();
       }
     });
   }
