@@ -1,10 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:responsive/desktop%20layout/desktop_layout.dart';
 import 'package:responsive/mobile%20Layout/drawer.dart';
-import 'package:responsive/mobile%20Layout/mobile_layout.dart';
-import 'package:responsive/tablet%20layout/tablet_layout.dart';
+import 'package:responsive/mobile%20Layout/home_view_body.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
       key: scaffoldKey,
       drawer: const CustomDrawer(),
       backgroundColor: const Color(0xffDBDBDB),
-      appBar: MediaQuery.of(context).size.width < 1024
+      appBar: screenWidth < 1087
           ? AppBar(
               backgroundColor: Colors.black,
               leading: IconButton(
@@ -57,25 +55,11 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             )
           : null,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
+      body: const Padding(
+        padding: EdgeInsets.symmetric(
           horizontal: 16.0,
         ),
-        child: LayoutBuilder(builder: (context, constraints) {
-          log('MaxWidth LayoutBuilder: ${constraints.maxWidth}');
-
-          if (constraints.maxWidth < 768) {
-            // Mobile layout
-            return const MobileLayout();
-          } else if (constraints.maxWidth >= 768 &&
-              constraints.maxWidth < 1024) {
-            // Tablet layout
-            return const TabLayout();
-          } else {
-            // Desktop layout
-            return const DesktopLayout();
-          }
-        }),
+        child:DashboardView()
       ),
     );
   }

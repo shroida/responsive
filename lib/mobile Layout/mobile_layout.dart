@@ -13,6 +13,6 @@ class MobileLayout extends StatefulWidget {
 class _MobileLayoutState extends State<MobileLayout> {
   @override
   Widget build(BuildContext context) {
-    return const HomeViewBody();
+    return const DashboardView();
   }
 }

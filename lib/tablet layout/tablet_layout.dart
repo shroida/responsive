@@ -13,6 +13,6 @@ class TabLayoutState extends State<TabLayout> {
   int number = 0;
   @override
   Widget build(BuildContext context) {
-    return const HomeViewBody();
+    return const DashboardView();
   }
 }

@@ -4,7 +4,9 @@ import 'package:responsive/mobile%20Layout/drawer.dart';
 import 'package:responsive/tablet%20layout/tab_view.dart';
 
 class DesktopLayout extends StatelessWidget {
-  const DesktopLayout({super.key});
+  DesktopLayout({super.key}) {
+    print('desk layout created');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +14,14 @@ class DesktopLayout extends StatelessWidget {
       backgroundColor: const Color(0xffDBDBDB),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
-        child: const Row(
+        child: Row(
           children: [
-            Expanded(child: CustomDrawer()),
+            const Expanded(child: CustomDrawer()),
             Expanded(flex: 4, child: TabView()),
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
-            Expanded(
+            const Expanded(
               flex: 2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
