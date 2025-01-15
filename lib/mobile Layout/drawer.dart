@@ -6,28 +6,74 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Drawer(
+    return Drawer(
+      backgroundColor: Theme.of(context).drawerTheme.backgroundColor ?? const Color(0xffDBDBDB),
+      elevation: 0,
       child: Column(
         children: [
-          DrawerHeader(child: Icon(FontAwesomeIcons.solidHeart)),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text('D A S H B O A R D'),
+          const DrawerHeader(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(FontAwesomeIcons.solidHeart, size: 48),
+                SizedBox(height: 10),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Welcome!',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                ),
+              ],
+            ),
           ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('S E T T I N G S'),
+          DrawerItemText(
+            icon: Icon(Icons.home, color: Theme.of(context).iconTheme.color),
+            text: 'DASHBOARD',
           ),
-          ListTile(
-            leading: Icon(Icons.info),
-            title: Text('A B O U T'),
+          DrawerItemText(
+            icon: Icon(Icons.settings, color: Theme.of(context).iconTheme.color),
+            text: 'SETTINGS',
           ),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('L O G O U T'),
+          DrawerItemText(
+            icon: Icon(Icons.info, color: Theme.of(context).iconTheme.color),
+            text: 'ABOUT',
+          ),
+          DrawerItemText(
+            icon: Icon(Icons.logout, color: Theme.of(context).iconTheme.color),
+            text: 'LOGOUT',
           ),
         ],
       ),
+    );
+  }
+}
+
+class DrawerItemText extends StatelessWidget {
+  const DrawerItemText({
+    super.key,
+    required this.icon,
+    required this.text,
+  });
+
+  final Icon icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: icon,
+      title: FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: Alignment.centerLeft,
+        child: Text(
+          text,
+          style: const TextStyle(fontSize: 20), // Set an initial font size
+        ),
+      ),
+      onTap: () {
+        // Implement navigation or functionality here
+      },
     );
   }
 }
