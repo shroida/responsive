@@ -6,9 +6,7 @@ class CustomSliverGrid extends StatelessWidget {
   final int numberOfRows;
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+    return SliverGrid.builder(
       itemCount: 4,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisSpacing: 16,
